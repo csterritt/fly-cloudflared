@@ -4,6 +4,13 @@ This is an example project which uses `docker-compose` to build a service
 which runs on `fly.io`, and uses a `cloudflared tunnel` to route traffic
 from a domain name hosted by Cloudflare to that service.
 
+#### Tunnel setup
+
+You will need to run the following to configure the tunnel so that it has
+a domain name associated with it:
+
+    cloudflared tunnel route dns your-cloudflare-tunnel-ID server.your-host.com
+
 #### Building
 
 Running locally:
