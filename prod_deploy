@@ -1,0 +1,5 @@
+#!/bin/bash
+flyctl deploy --build-arg ACCOUNT_TAG="$ACCOUNT_TAG" \
+  --build-arg TUNNEL_SECRET="$TUNNEL_SECRET" \
+  --build-arg TUNNEL_ID="$TUNNEL_ID" \
+  --build-arg TUNNEL_NAME="$TUNNEL_NAME"
