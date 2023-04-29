@@ -39,3 +39,9 @@ for this to work. Substitute actual values for the description:
     export TUNNEL_SECRET="your-cloudflare-tunnel-secret"
     export TUNNEL_ID="your-cloudflare-tunnel-ID"
     export TUNNEL_NAME="your-cloudflare-tunnel-name"
+
+For `fly.io`, you'll have to use the:
+
+    flyctl secrets set ACCOUNT_TAG="..." TUNNEL_SECRET="..." TUNNEL_ID="..." TUNNEL_NAME="..."
+
+command to set the secrets, so they'll be available when your app runs.
