@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 jo \
     AccountTag="$ACCOUNT_TAG" \
     TunnelSecret="$TUNNEL_SECRET" \

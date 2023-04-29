@@ -2,10 +2,6 @@ FROM alpine
 
 ARG OVERMIND_VERSION=v2.4.0
 
-ARG ACCOUNT_TAG
-ARG TUNNEL_SECRET
-ARG TUNNEL_ID
-ARG TUNNEL_NAME
 ENV ACCOUNT_TAG=$ACCOUNT_TAG
 ENV TUNNEL_SECRET=$TUNNEL_SECRET
 ENV TUNNEL_ID=$TUNNEL_ID
@@ -31,11 +27,10 @@ COPY ./docker/nginx/config/nginx.conf /etc/nginx/http.d/default.conf
 COPY ./docker/nginx/content/index.html /var/www
 
 RUN mkdir -p /etc/cloudflared
-COPY ./cloudflared-setup.sh /tmp/cloudflared-setup.sh
-RUN echo ACCOUNT_TAG is $ACCOUNT_TAG
-RUN chmod 755 /tmp/cloudflared-setup.sh
-RUN /tmp/cloudflared-setup.sh
-COPY ./cf-config.yml /tmp/cf-config.yml
-RUN sed "1,2s/TUNNEL_ID/${TUNNEL_ID}/" < /tmp/cf-config.yml > /etc/cloudflared/config.yml
+RUN mkdir /app
+COPY ./cloudflared-setup.sh /app/cloudflared-setup.sh
+COPY ./cf-config.yml /app/cf-config.yml
+COPY ./setup-and-start-overmind.sh /app/setup-and-start-overmind.sh
+RUN chmod 755 /app/setup-and-start-overmind.sh
 
-CMD "/usr/sbin/overmind" start -N -f /etc/procfile.d/Procfile -r web,tunnel
+CMD "/app/setup-and-start-overmind.sh"
