@@ -28,6 +28,9 @@ a domain name associated with it:
 
 Running locally:
 
+You can use the `go` script to run this locally:
+
+    ./go
 
 **NOTE**: The following environmental variables will have to be set in order
 for this to work. Substitute actual values for the description:
